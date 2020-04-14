@@ -1,19 +1,18 @@
 ---
-title: Loginservice.io
+title: Cliqq App Development
 type: guide
 order: 1
 ---
 
 ## Introduction
 
-- Instantly add user authentication to a VueJS or Nuxt project.
-- Login with username, email address, or Social Media credentials
-- User registration, with confirmation email verification
-- Forgotten password handling via email
-- JWT (JSON Web Token) for downstream verifications.
-- User administration
-- Integration with MailChimp, import and export
-- Blacklisted users
+Cliqq allows you to develop your own content to run inside the **Cliqq SuperApp**.
+
+Your App can be developed as a webapp, using standard HTML, Javascript and CSS. While we recommend VueJS it is not mandatory.
+
+This document details a library of functionality that allows your webapp to communicate with the Cliqq SuperApp.
+
+
 
 
 
