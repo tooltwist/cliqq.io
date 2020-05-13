@@ -188,15 +188,10 @@
     <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Cliqq allows you to develop your own content to run inside the <strong>Cliqq SuperApp</strong>.</p>
 <p>Your App can be developed as a webapp, using standard HTML, Javascript and CSS. While we recommend VueJS it is not mandatory.</p>
 <p>This document details a library of functionality that allows your webapp to communicate with the Cliqq SuperApp.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p>Import the <code>client-to-mobile.js</code> file to your web application.</p>
-<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><h3 id="Get-Photo"><a href="#Get-Photo" class="headerlink" title="Get Photo"></a>Get Photo</h3><p><code>@function getPhoto</code> - returns base64 image format to the client.<br><code>@params callback</code> - function that will execute the action after being invoke.</p>
-<p>Response :<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">base64 image</span><br></pre></td></tr></table></figure></p>
-<h3 id="Get-Contact"><a href="#Get-Contact" class="headerlink" title="Get Contact"></a>Get Contact</h3><p><code>@function getContact</code> - returns an object containing the contact details.<br><code>@params callback</code> - function that will execute the action after being invoke.</p>
-<p>Response :<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">base64 image</span><br></pre></td></tr></table></figure></p>
-<h3 id="Get-Location"><a href="#Get-Location" class="headerlink" title="Get Location"></a>Get Location</h3><p><code>@function getLocation</code> - returns an object containing geo location.<br><code>@params callback</code> - function that will execute the action after being invoke.</p>
-<p>Response :<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">base64 image</span><br></pre></td></tr></table></figure></p>
-<h3 id="Make-Payment"><a href="#Make-Payment" class="headerlink" title="Make Payment"></a>Make Payment</h3><p><code>@function makePayment</code> - function that will trigger the payment on mobile side.<br><code>@params details</code> - a request object details for requesting payment.<br><code>@params callback</code> - function that will execute the action after being invoke.</p>
-<p>Response :<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">base64 image</span><br></pre></td></tr></table></figure></p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p>Import the <code>superapp-.client.min.js</code> file to your web application .</p>
+<p>Sample usage:</p>
+<p><img src="/images/import-sdk.png" alt></p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><h3 id="Get-Contact"><a href="#Get-Contact" class="headerlink" title="Get Contact"></a>Get Contact</h3><p> <code>getContact</code> function<br>After the user selected the specific contact in mobile, this getContact function is responsible for retrieving the contact details, which includes the full name and mobile number. To use this just invoke the function from the imported sdk.</p>
 
   
   
