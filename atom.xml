@@ -6,7 +6,7 @@
   <link href="/cliqq.io/atom.xml" rel="self"/>
   
   <link href="https://tooltwist.github.io/"/>
-  <updated>2020-05-13T10:14:25.930Z</updated>
+  <updated>2020-04-16T01:58:15.116Z</updated>
   <id>https://tooltwist.github.io/</id>
   
   <author>
@@ -15,20 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>a</title>
-    <link href="https://tooltwist.github.io/2020/05/13/a/"/>
-    <id>https://tooltwist.github.io/2020/05/13/a/</id>
-    <published>2020-05-13T10:14:25.000Z</published>
-    <updated>2020-05-13T10:14:25.930Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>Announcing Vue.js 2.0</title>
