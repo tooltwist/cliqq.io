@@ -188,15 +188,51 @@
     <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Cliqq allows you to develop your own content to run inside the <strong>Cliqq SuperApp</strong>.</p>
 <p>Your App can be developed as a webapp, using standard HTML, Javascript and CSS. While we recommend VueJS it is not mandatory.</p>
 <p>This document details a library of functionality that allows your webapp to communicate with the Cliqq SuperApp.</p>
+<blockquote>
+<p>The super app provides common services that remove friction. Some of the common services are:</p>
+<ul>
+<li>Common login and identity</li>
+<li>Common payment method (wallet)</li>
+</ul>
+<p>It has two main components:</p>
+<ul>
+<li><p>Super app container -This is the main application. A native mobile app developed by the owner of the super app. It is designed to provide the common functionalities to be used in the mini apps (login, payment system, notifications, etc.). This includes common framework and common APIs that allows 3rd party developers to create and integrate their own web apps.</p>
+</li>
+<li><p>Mini apps - These are web applications that provide extended functionality. The web applications reside within the super app container. These are developed either by the owner of the super app or 3rd party developers.</p>
+</li>
+</ul>
+</blockquote>
+<p>  The client (3rd party app) can invoke any actions that are available from the imported sdk, then the sdk will send the action to mobile then translate and perform the necesssary action/s and will send back the necessary details or response to the client via SDK. The SDK will serve as the bridge for the whole communication process from client to mobile and vice-versa.</p>
+<p><strong>Communication between the super app container and mini apps:</strong></p>
+<p class="tip"><br>  We used injectJavaScript and onPostMessage for the communication between SuperApp and the Client (3rd party app).<br><br>  Feel free to visit this link for more and detailed explanation regarding those two. <a href="https://github.com/react-native-community/react-native-webview/blob/master/docs/Guide.md" target="_blank" rel="noopener">https://github.com/react-native-community/react-native-webview/blob/master/docs/Guide.md</a><br><br><br><br><img src="images/sdk-communication.png" alt><br></p>
+
+
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p>Import the <code>superapp-.client.min.js</code> file to your web application .</p>
+<blockquote>
 <p>Sample usage:</p>
-<p><img src="images/import-sdk.png" alt="Invoke getContact"></p>
-<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><h3 id="getContact"><a href="#getContact" class="headerlink" title="getContact()"></a><code>getContact()</code></h3><p><code>getContact</code> function</p>
-<p>   After the user selected the specific contact in mobile, this getContact function is responsible<br>   for retrieving the contact details, which includes the full name and mobile number. To use this just invoke the function from the imported sdk.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;router-view/&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &apos;./js/superapp.client.min.js&apos;</span><br><span class="line">export default &#123; name: &apos;App&apos; &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><h3 id="getContact"><a href="#getContact" class="headerlink" title="getContact()"></a><code>getContact()</code></h3><p>  This function allows the user select a contact from the contact list of the mobile device.</p>
+<p>  Below is the sample usage and response.</p>
+<blockquote>
 <p>Sample usage:</p>
-<p><img src="images/select-contact.png" alt="Invoke getContact"></p>
-<p>Response:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  name: &quot;John Doe&quot;,</span><br><span class="line">  number: &quot;09561123456&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"selectContact()"</span>&gt;</span>Select Contact<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> &#123; SuperApp &#125; = <span class="built_in">window</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">    methods: &#123;</span><br><span class="line">      selectContact() &#123;</span><br><span class="line"><span class="javascript">        SuperApp.getContact(<span class="function"><span class="params">contact</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">          <span class="comment">// Do something in your app</span></span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p class="tip"> @function <code>getContact</code> - will t trigger the  getContact from the sdk<br> in which the user can select contact from mobile and<br><code>@returns</code> contact details object.<br><br>Data retreived from mobile:<br>{<br>  name: “John Doe”,<br>  number: “09561123456”<br>}<br><br></p>
+
+
+
+<h3 id="walletPay"><a href="#walletPay" class="headerlink" title="walletPay()"></a><code>walletPay()</code></h3><p>  This function allows the user to purchase product/s using by using the super app wallet. Once the transaction is successful the total amount purchased will automatically deducted from the super app wallet and confirmation modal will show of the items purchased.</p>
+<p>  Below is the sample usage and response.</p>
+<blockquote>
+<p>Sample usage:</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"buyProduct()"</span>&gt;</span>Buy Product<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> &#123; SuperApp &#125; = <span class="built_in">window</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">    methods: &#123;</span><br><span class="line">      buyProduct() &#123;</span><br><span class="line">        SuperApp.walletPay(</span><br><span class="line">        &#123;</span><br><span class="line">          amount: item.price,</span><br><span class="line">          items: [</span><br><span class="line">            &#123;</span><br><span class="line"><span class="javascript">              name: <span class="string">`<span class="subst">$&#123;item.name&#125;</span> - <span class="subst">$&#123;item.description&#125;</span>`</span>,</span></span><br><span class="line">              price: item.price,</span><br><span class="line">              quantity: 1</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;,</span><br><span class="line">        () =&gt; &#123;</span><br><span class="line"><span class="javascript">          <span class="keyword">this</span>.$buefy.dialog.alert(</span></span><br><span class="line"><span class="javascript">            <span class="string">`Successfully purchased &lt;b&gt;<span class="subst">$&#123;item.name&#125;</span> - <span class="subst">$&#123;item.description&#125;</span>&lt;/b&gt; to &lt;b&gt;+63<span class="subst">$&#123;<span class="keyword">this</span>.number&#125;</span>&lt;/b&gt;`</span></span></span><br><span class="line">          );</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p class="tip"> <code>@function walletPay</code> - will trigger the  walletPay function from the sdk<br>      in which if the transaction is successful will return true otherwise false.<br>      <code>@params amount</code> - Total amount price of the product<br>      <code>@params items</code> - Details of the item/s<br>      <code>@params callback</code><br>      <code>@returns boolean</code><br></p>
+
+
+
+
   
   
     <div class="guide-links">
