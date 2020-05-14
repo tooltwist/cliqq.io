@@ -45,23 +45,17 @@ This document details a library of functionality that allows your webapp to comm
 
 ## Quick Start
 
-Import the `superapp-.client.min.js` file to your web application .
+Import the `superapp.client.min.js` file to your web application.
 
-> Sample usage:
-
-```vue
-<template>
-  <div id="app">
-    <router-view/>
-  </div>
-</template>
-
-<script>
-import './js/superapp.client.min.js'
-export default { name: 'App' }
-</script>
+```javascript
+<script defer src="https://nbt-superapp-api-dev-assets.s3-ap-southeast-2.amazonaws.com/superapp.client.min.js"></script>
 ```
+
+We highly recommend to have your own copy of the file.
+
 ## API
+
+The APIs will be available on the global variable SuperApp
 
 ### `getContact()`
 
@@ -71,98 +65,56 @@ export default { name: 'App' }
 
  > Sample usage:
 
-```html
-<div id="example">
-  <button v-on:click="selectContact()">Select Contact</button>
-</div>
-
-<script>
-  let { SuperApp } = window;
-
-  export default {
-    ...
-    ...
-    ...
-    methods: {
-      selectContact() {
-        SuperApp.getContact(contact => {
-          // Do something in your app
-        })
-      }
-    }
+```javascript
+function callback (contact) {
+  /*
+  Example return contact =
+  {
+    name: "John Doe",
+    number: "09561123456"
   }
-
-</script>
-
-```
-
-<p class="tip"> @function `getContact` - will t trigger the  getContact from the sdk
- in which the user can select contact from mobile and
-`@returns` contact details object.
-
-Data retreived from mobile:
-{
-  name: "John Doe",
-  number: "09561123456"
+  */
+  // Do something in your app
 }
 
-</p>
+SuperApp.getContact(callback)
+```
 
+<p class="tip">
+`@params callback` - a function with 1 parameter to hold the selected contactDetails.
+</p>
 
 
 ### `walletPay()`
 
-  This function allows the user to purchase product/s using by using the super app wallet. Once the transaction is successful the total amount purchased will automatically deducted from the super app wallet and confirmation modal will show of the items purchased.
+  This function allows the user to purchase product/s by using the super app wallet. Once the transaction is successful the total amount purchased will automatically deducted from the super app wallet and confirmation modal will show of the items purchased.
 
   Below is the sample usage and response.
 
  > Sample usage:
 
-```html
+```javascript
+function callback (status) {
+  // status - True if success, otherwise cancelled
+}
 
-<div id="example">
-  <button v-on:click="buyProduct()">Buy Product</button>
-</div>
-
-<script>
-  let { SuperApp } = window;
-
-  export default {
-    ...
-    ...
-    ...
-    methods: {
-      buyProduct() {
-        SuperApp.walletPay(
-        {
-          amount: item.price,
-          items: [
-            {
-              name: `${item.name} - ${item.description}`,
-              price: item.price,
-              quantity: 1
-            }
-          ]
-        },
-        () => {
-          this.$buefy.dialog.alert(
-            `Successfully purchased <b>${item.name} - ${item.description}</b> to <b>+63${this.number}</b>`
-          );
-        }
-      }
+var transactionDetails = {
+  amount: 500,
+  items: [
+    {
+      name: `Foo`,
+      price: 100,
+      quantity: 5
     }
-  }
+  ]
+}
 
-</script>
+SuperApp.walletPay(transactionDetails, callback)
 ```
 
 <p class="tip"> `@function walletPay` - will trigger the  walletPay function from the sdk
       in which if the transaction is successful will return true otherwise false.
-      `@params amount` - Total amount price of the product
-      `@params items` - Details of the item/s
+      `@params transactionDetails`
       `@params callback`
       `@returns boolean`
 </p>
-
-
-
